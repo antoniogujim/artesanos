@@ -24,7 +24,7 @@ const lato = Lato({
 // metadataBase es necesario para que Next.js construya URLs absolutas
 // en OpenGraph y Twitter (imágenes, canonical, etc.)
 export const metadata: Metadata = {
-  metadataBase: new URL("https://artesanosgutierrez.es"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"),
   title: {
     default: "Artesanos Gutiérrez | Carpintería artesanal en Jaén",
     template: "%s | Artesanos Gutiérrez",

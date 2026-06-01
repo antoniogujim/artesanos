@@ -59,6 +59,8 @@ artesanos/
 │   └── utils.ts                      # Utilidades (cn)
 │
 ├── middleware.ts                     # Cabeceras de seguridad + control de acceso /admin
+├── .env.local                        # Variables de entorno en local (no se sube a git)
+├── .env.production                   # Variables de entorno en producción (no se sube a git)
 │
 └── public/
     ├── hero-taller.jpg               # Imagen del hero
@@ -187,6 +189,18 @@ Los proyectos se definen en `lib/projects.ts`. Para añadir uno nuevo:
 
 ---
 
+## Variables de entorno
+
+| Variable | Local (`.env.local`) | Producción (`.env.production`) |
+|---|---|---|
+| `NEXT_PUBLIC_BASE_URL` | `http://localhost:3000` | `https://tu-proyecto.vercel.app` |
+
+La URL base se usa en `metadataBase`, `sitemap.ts` y `robots.ts`. El fallback es `http://localhost:3000`. Actualízala con tu URL real al desplegar.
+
+> El email de contacto (`info@artesanosgutierrez.es`) en el footer y la página de contacto es un ejemplo — sustitúyelo por el correo real del negocio.
+
+---
+
 ## Arrancar en local
 
 ```bash
@@ -202,3 +216,36 @@ Abre [http://localhost:3000](http://localhost:3000) en el navegador.
 npm run build
 npm start
 ```
+
+---
+
+## Despliegue en Vercel
+
+### Opción A — Desde la web (recomendado)
+
+1. Sube el proyecto a GitHub:
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/tu-usuario/artesanos-gutierrez.git
+git branch -M main
+git push -u origin main
+```
+
+2. Ve a [vercel.com](https://vercel.com) → **Add New Project** → selecciona el repositorio
+3. Vercel detecta Next.js automáticamente — pulsa **Deploy**
+4. En **Settings → Environment Variables** añade:
+   - `NEXT_PUBLIC_BASE_URL` = `https://tu-proyecto.vercel.app`
+
+### Opción B — Desde la terminal
+
+```bash
+npm i -g vercel
+vercel login
+vercel
+```
+
+### Dominio personalizado
+
+Cuando tengas dominio propio, actualiza `NEXT_PUBLIC_BASE_URL` en las variables de entorno de Vercel a `https://tu-proyecto.vercel.app` y redespliega.
