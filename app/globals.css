@@ -1,26 +1,93 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === Paleta tonos madera === */
+  --wood-dark:    #2D1B0E;
+  --wood-medium:  #7B4A1E;
+  --wood-light:   #C4956A;
+  --wood-pale:    #D4A97A;
+  --cream:        #F5ECD7;
+  --sand:         #E8D5B0;
+  --gold:         #B8860B;
+  --gold-light:   #D4A017;
+
+  /* === Variables Shadcn mapeadas a tonos madera === */
+  --background:             #F5ECD7;
+  --foreground:             #2D1B0E;
+  --card:                   #FAF3E6;
+  --card-foreground:        #2D1B0E;
+  --popover:                #FAF3E6;
+  --popover-foreground:     #2D1B0E;
+  --primary:                #7B4A1E;
+  --primary-foreground:     #F5ECD7;
+  --secondary:              #E8D5B0;
+  --secondary-foreground:   #2D1B0E;
+  --muted:                  #E8D5B0;
+  --muted-foreground:       #5C4A38;
+  --accent:                 #B8860B;
+  --accent-foreground:      #F5ECD7;
+  --destructive:            oklch(0.577 0.245 27.325);
+  --border:                 #C4956A55;
+  --input:                  #C4956A55;
+  --ring:                   #B8860B;
+  --radius:                 0.625rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colores madera disponibles como clases Tailwind */
+  --color-wood-dark:   var(--wood-dark);
+  --color-wood-medium: var(--wood-medium);
+  --color-wood-light:  var(--wood-light);
+  --color-wood-pale:   var(--wood-pale);
+  --color-cream:       var(--cream);
+  --color-sand:        var(--sand);
+  --color-gold:        var(--gold);
+  --color-gold-light:  var(--gold-light);
+
+  /* Variables Shadcn */
+  --color-background:             var(--background);
+  --color-foreground:             var(--foreground);
+  --color-card:                   var(--card);
+  --color-card-foreground:        var(--card-foreground);
+  --color-popover:                var(--popover);
+  --color-popover-foreground:     var(--popover-foreground);
+  --color-primary:                var(--primary);
+  --color-primary-foreground:     var(--primary-foreground);
+  --color-secondary:              var(--secondary);
+  --color-secondary-foreground:   var(--secondary-foreground);
+  --color-muted:                  var(--muted);
+  --color-muted-foreground:       var(--muted-foreground);
+  --color-accent:                 var(--accent);
+  --color-accent-foreground:      var(--accent-foreground);
+  --color-destructive:            var(--destructive);
+  --color-border:                 var(--border);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
+
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+
+  /* Tipografía */
+  --font-heading: var(--font-playfair);
+  --font-body:    var(--font-lato);
+  --font-sans:    var(--font-lato);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-lato), sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), Georgia, serif;
+  }
 }
