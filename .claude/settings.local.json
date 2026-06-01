@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\Antonio\\\\Desktop\" | Where-Object { $_.Name -match \"artesanos\" })"
+    ]
+  }
+}
